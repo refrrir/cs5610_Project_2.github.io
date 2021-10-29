@@ -1,0 +1,11 @@
+.space{
+    width: 24px;
+    height: 24px;
+    border: 1px solid black;
+    transform: rotateZ(330deg)skew(60deg, 60deg);
+    margin-right: 24px;
+}
+
+.space:first-child{
+    left: 0px;
+}
