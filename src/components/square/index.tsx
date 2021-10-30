@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { boardType } from "../../enum/boardType";
-import { squareState } from "../../enum/squareState";
-import Action from "../../redux/action";
-import * as boardActionCreator from "../../redux/action-creator/board";
-import { IBoardState } from '../../redux/states/IBoardState';
+import { BoardType, SquareState } from "../../model";
+import { Action, IBoardState, BoardActionCreator } from '../../reduxs';
 import "./index.css";
 
 type IBoardStateFromProps = {
@@ -14,7 +11,7 @@ type IBoardStateFromProps = {
 
 const mapDispatchToProps: ((dispatch: any) => IBoardStateFromProps) = (dispatch: any) => {
     return bindActionCreators({
-        setBoardState: boardActionCreator.setValue,
+        setBoardState: BoardActionCreator.setValue,
     }, dispatch);
 }
 
@@ -23,8 +20,8 @@ export interface ISquareState {
 }
 
 export interface ISquareOwnProps {
-    type: boardType;
-    state: squareState;
+    type: BoardType;
+    state: SquareState;
 }
 
 type ISquareProps = ISquareOwnProps & IBoardStateFromProps;
