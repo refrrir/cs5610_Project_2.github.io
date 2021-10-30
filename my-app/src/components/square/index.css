@@ -1,4 +1,4 @@
-.space{
+.square{
     width: 24px;
     height: 24px;
     border: 1px solid black;
@@ -6,6 +6,6 @@
     margin-right: 24px;
 }
 
-.space:first-child{
+.square:first-child{
     left: 0px;
 }

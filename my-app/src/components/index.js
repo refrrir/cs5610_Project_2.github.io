@@ -1,9 +1,9 @@
 import { Ship } from "./ship";
-import { Space } from "./space";
+import { Square } from "./square";
 import { Borad } from "./borad";
 
 export {
     Ship,
-    Space,
+    Square,
     Borad
 }
