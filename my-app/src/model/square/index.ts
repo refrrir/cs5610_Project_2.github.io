@@ -1,4 +1,4 @@
-export enum squareState {
+export enum SquareState {
     None = 0,
     Damaged = 1,
     HasShip = 2,

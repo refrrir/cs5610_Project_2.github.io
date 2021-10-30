@@ -1,11 +1,9 @@
-import Action from "../action";
-import constant from "../constants";
-import { IBoardState } from "../states/IBoardState";
-import { squareState } from "../../enum/squareState";
+import { Action, constant, IBoardState } from "../../../reduxs";
+import { SquareState } from "../../../model";
 
 const defaultState: IBoardState = {
-    myBoardInfo: new Array(10).fill(new Array(10).fill(squareState.None)),
-    opponentBoardInfo: new Array(10).fill(new Array(10).fill(squareState.HasShip)),
+    myBoardInfo: new Array(10).fill(new Array(10).fill(SquareState.None)),
+    opponentBoardInfo: new Array(10).fill(new Array(10).fill(SquareState.HasShip)),
 };
 
 export default (state: IBoardState = defaultState, action: Action): IBoardState => {
