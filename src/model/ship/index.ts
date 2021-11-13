@@ -1,6 +1,6 @@
 export enum ShipType {
-    five_one = 1,
-    four_one = 2,
+    two_one = 2,
     three_one = 3,
-    two_one = 4
+    four_one = 4,
+    five_one = 5,
 }

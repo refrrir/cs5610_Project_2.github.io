@@ -1,11 +1,76 @@
 .square{
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
     border: 1px solid black;
-    transform: rotateZ(330deg)skew(60deg, 60deg);
-    margin-right: 24px;
+    /* transform: rotateZ(330deg)skew(60deg, 60deg); */
+    /* margin-right: 24px; */
 }
 
 .square:first-child{
     left: 0px;
+}
+.board-opponent .square{
+    border-color: blue;
+}
+
+.board-opponent .square:hover{
+    background-color:lightblue;
+}
+
+.board-opponent .square:active{
+    background-color:darkgray;
+}
+
+.board-opponent .square-damaged{
+    background-color:lightgray;
+    cursor:not-allowed;
+}
+
+.board-opponent .square-damaged:hover{
+    background-color:lightgray;
+}
+
+.board-opponent .square-hasShipDamaged{
+    background-color:darkblue;
+    cursor:not-allowed;
+}
+
+.board-opponent .square-hasShipDamaged:hover{
+    background-color:darkblue;
+}
+
+.board-mine .square{
+    border-color: red;
+    cursor: not-allowed;
+}
+
+.board-mine .square:hover{
+    background-color:lightcoral;
+}
+
+.board-mine .square:active{
+    background-color:darkgray;
+}
+
+.board-mine .square-damaged:hover{
+    background-color:lightgray;
+}
+
+.board-mine .square-damaged{
+    background-color:lightgray;
+    cursor:not-allowed;
+}
+
+.board-mine .square-hasShip{
+    background-color:lightpink;
+    cursor:not-allowed;
+}
+
+.board-mine .square-hasShipDamaged{
+    background-color:darkred;
+    cursor:not-allowed;
+}
+
+.board-mine .square-hasShipDamaged:hover{
+    background-color:darkred;
 }

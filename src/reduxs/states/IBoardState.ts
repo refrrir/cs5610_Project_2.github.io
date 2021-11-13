@@ -1,6 +1,7 @@
-import {SquareState} from "../../model"
+import {BoardType, SquareState} from "../../model"
 
 export default interface IBoardState {
-    myBoardInfo: SquareState[];
-    opponentBoardInfo: SquareState[];
+    myBoardInfo: SquareState[][];
+    opponentBoardInfo: SquareState[][];
+    winner: BoardType;
 }
