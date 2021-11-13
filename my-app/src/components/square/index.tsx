@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BoardType, SquareState } from "../../model";
+import { BoardType, Position, SquareState } from "../../model";
 import { Action, IBoardState, BoardActionCreator } from '../../reduxs';
 import "./index.css";
 
+
 type IBoardStateFromProps = {
-    setBoardState?: (key: keyof IBoardState, value: any) => Action;
+    setBoardState?: (key: keyof IBoardState, value: Position) => Action;
 }
 
 const mapDispatchToProps: ((dispatch: any) => IBoardStateFromProps) = (dispatch: any) => {
@@ -22,6 +23,7 @@ export interface ISquareState {
 export interface ISquareOwnProps {
     type: BoardType;
     state: SquareState;
+    position: Position;
 }
 
 type ISquareProps = ISquareOwnProps & IBoardStateFromProps;
@@ -32,12 +34,26 @@ export class Square extends React.Component<ISquareProps, ISquareState> {
         super(props);
     }
     render() {
-        return <div className="square" onClick={this.onSquareClick}></div>
+        const{state} = this.props;
+        let stateClass = "";
+        switch(state){
+            case SquareState.Damaged:
+                stateClass="square-damaged";
+                break;
+            case SquareState.HasShip:
+                stateClass="square-hasShip";
+                break;
+            case SquareState.HasShipDamaged:
+                stateClass="square-hasShipDamaged";
+        }
+        return <div className={"square " + stateClass} onClick={this.onSquareClick}></div>
     }
 
     private onSquareClick: () => void = () => {
-        const { setBoardState } = this.props;
-        setBoardState!("myBoardInfo", []);
+        const { setBoardState, position, type} = this.props;
+        if (type == BoardType.OPPONENT){
+            setBoardState!("opponentBoardInfo", { x: position.x, y: position.y });
+        }
     }
 
 }

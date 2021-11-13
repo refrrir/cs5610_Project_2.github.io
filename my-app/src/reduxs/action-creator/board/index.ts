@@ -1,6 +1,7 @@
 import { Action, constant } from "../../../reduxs";
+import { Position } from "../../../model";
 
-const setValue: (key: string, value: any) => Action =
+const setValue: (key: string, value: Position) => Action =
     (key, value) => ({
         key: key,
         value: value,

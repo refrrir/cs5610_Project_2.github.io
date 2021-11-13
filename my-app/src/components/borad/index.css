@@ -1,11 +1,28 @@
 .board-opponent{
-    margin-left: 50px;
-    margin-top: 50px;
+    /* margin-left: 50px;
+    margin-top: 50px; */
 }
 .board-mine{
-    padding-top: 0px;
-    margin-left: 500px;
+    /* padding-top: 0px;
+    margin-left: 50px; */
 }
 .row{
     display: flex;
+}
+
+.plate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.winner-pannel{
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: "New Times";
+    color: cadetblue;
 }
