@@ -1,9 +1,11 @@
-import { Ship } from "./ship";
 import { Square } from "./square";
 import { Borad } from "./borad";
+import { Panel } from "./panel";
+import { Button } from "./button";
 
 export {
-    Ship,
     Square,
-    Borad
+    Borad,
+    Panel,
+    Button
 }
