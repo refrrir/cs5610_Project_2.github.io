@@ -2,13 +2,16 @@
     width: 48px;
     height: 48px;
     border: 1px solid black;
-    /* transform: rotateZ(330deg)skew(60deg, 60deg); */
-    /* margin-right: 24px; */
 }
 
 .square:first-child{
     left: 0px;
 }
+
+.square-disable{
+    cursor: not-allowed;
+}
+
 .board-opponent .square{
     border-color: blue;
 }

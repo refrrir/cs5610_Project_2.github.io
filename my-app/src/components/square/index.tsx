@@ -2,15 +2,26 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BoardType, Position, SquareState } from "../../model";
-import { Action, IBoardState, BoardActionCreator } from '../../reduxs';
+import { Action, IBoardState, BoardActionCreator, IAppState } from '../../reduxs';
 import "./index.css";
 
+interface ISquareStateFromProps {
+    winner?: BoardType;
+}
 
-type IBoardStateFromProps = {
+
+const mapStateToProps: ((state: IAppState) => ISquareStateFromProps) = ({ board }) => {
+    return {
+        ...board
+    };
+};
+
+
+type ISquareDispatchFromProps = {
     setBoardState?: (key: keyof IBoardState, value: Position) => Action;
 }
 
-const mapDispatchToProps: ((dispatch: any) => IBoardStateFromProps) = (dispatch: any) => {
+const mapDispatchToProps: ((dispatch: any) => ISquareDispatchFromProps) = (dispatch: any) => {
     return bindActionCreators({
         setBoardState: BoardActionCreator.setValue,
     }, dispatch);
@@ -26,32 +37,33 @@ export interface ISquareOwnProps {
     position: Position;
 }
 
-type ISquareProps = ISquareOwnProps & IBoardStateFromProps;
+type ISquareProps = ISquareOwnProps & ISquareDispatchFromProps & ISquareStateFromProps;
 
-@(connect(null, mapDispatchToProps) as any)
+@(connect(mapStateToProps, mapDispatchToProps) as any)
 export class Square extends React.Component<ISquareProps, ISquareState> {
-    constructor(props: ISquareProps) {
-        super(props);
-    }
+
     render() {
-        const{state} = this.props;
+        const { state, winner } = this.props;
         let stateClass = "";
-        switch(state){
+        switch (state) {
             case SquareState.Damaged:
-                stateClass="square-damaged";
+                stateClass = "square-damaged";
                 break;
             case SquareState.HasShip:
-                stateClass="square-hasShip";
+                stateClass = "square-hasShip";
                 break;
             case SquareState.HasShipDamaged:
-                stateClass="square-hasShipDamaged";
+                stateClass = "square-hasShipDamaged";
         }
-        return <div className={"square " + stateClass} onClick={this.onSquareClick}></div>
+        if(winner !== BoardType.NULL){
+            stateClass += " square-disable";
+        }
+        return <div className={"square " + stateClass} onClick={winner === BoardType.NULL ? this.onSquareClick : () => { }}></div>
     }
 
     private onSquareClick: () => void = () => {
-        const { setBoardState, position, type} = this.props;
-        if (type == BoardType.OPPONENT){
+        const { setBoardState, position, type } = this.props;
+        if (type === BoardType.OPPONENT) {
             setBoardState!("opponentBoardInfo", { x: position.x, y: position.y });
         }
     }

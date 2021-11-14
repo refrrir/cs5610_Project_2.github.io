@@ -8,3 +8,8 @@ export interface Position {
     x: number,
     y: number,
 }
+
+export enum PlayMode {
+    NORMAL = 1,
+    SINGLE = 2,
+}
