@@ -8,10 +8,8 @@ const defaultState: IPanelState = {
 
 export default (state: IPanelState = defaultState, action: Action): IPanelState => {
     const { key, value } = action;
-    console.log(state);
     if (action.type === constant.UPDATE_PANEL_STATE) {
         Object.defineProperty(state, key, { value: value });
-        console.log(state);
         return { ...state };
     }
     else {

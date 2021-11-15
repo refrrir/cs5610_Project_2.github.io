@@ -96,7 +96,6 @@ function getRandomNoDamagedPosition(board: SquareState[][]) {
 
 export default (state: IBoardState = defaultState, action: Action): IBoardState => {
     const { key, value } = action;
-    console.log(state);
     if (action.type === constant.UPDATE_BOARD_STATE) {
         if (key === "opponentBoardInfo") {
             let board = [...state.opponentBoardInfo];
