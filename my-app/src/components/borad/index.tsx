@@ -38,15 +38,12 @@ type IBoardProps = IBoardStateFromProps & IBoardDispatchFromProps;
 export class Borad extends React.Component<IBoardProps, any> {
 
     render() {
-        const { myBoardInfo, opponentBoardInfo, winner, resetBoardState, mode } = this.props;
+        const { myBoardInfo, opponentBoardInfo, winner, mode } = this.props;
         const winnerString = winner === BoardType.NULL ? "" : winner === BoardType.MINE ? "Player" : "AI";
         return (
             <React.Fragment>
                 <div className="winner-pannel">
                     {winner !== BoardType.NULL ? "Game over! " + winnerString + " won!" : ""}
-                </div>
-                <div className="button-wrapper">
-                    <Button onClick={() => { resetBoardState!() }} text={"Restart!"} />
                 </div>
                 <div className="plate">
                     <div className="board-opponent">
@@ -62,7 +59,7 @@ export class Borad extends React.Component<IBoardProps, any> {
 
     private onRenderSingleBoard: (type: BoardType, info: SquareState[][]) => JSX.Element[] = (type, info) => {
         const squares = info.map((_, i) => {
-            return (<div className="row">
+            return (<div className="board-row">
                 {info[i].map((_, j) =>
                     <Square type={type} state={info ? info[i][j] : 0} position={{ x: i, y: j }} />
                 )}

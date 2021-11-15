@@ -21,16 +21,16 @@
 }
 
 .board-opponent .square:active{
-    background-color:darkgray;
+    background-color:rgb(145, 204, 224);
 }
 
 .board-opponent .square-damaged{
-    background-color:lightgray;
+    background-color: #dae6efd9;
     cursor:not-allowed;
 }
 
 .board-opponent .square-damaged:hover{
-    background-color:lightgray;
+    background-color: #dae6efd9;
 }
 
 .board-opponent .square-hasShipDamaged{
@@ -52,15 +52,15 @@
 }
 
 .board-mine .square:active{
-    background-color:darkgray;
+    background-color:rgb(230, 102, 102);
 }
 
 .board-mine .square-damaged:hover{
-    background-color:lightgray;
+    background-color: #dae6efd9;
 }
 
 .board-mine .square-damaged{
-    background-color:lightgray;
+    background-color: #dae6efd9;
     cursor:not-allowed;
 }
 

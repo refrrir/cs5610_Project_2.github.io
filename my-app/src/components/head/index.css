@@ -1,0 +1,12 @@
+.head{
+    font-family: 'Courier New', Courier, monospace !important;
+    min-width: 100vh;
+}
+
+.head-title{
+    font-size: 36px !important;
+}
+
+.head-link{
+    font-size: 24px !important;
+}

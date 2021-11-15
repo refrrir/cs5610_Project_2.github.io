@@ -1,5 +1,5 @@
 import React from 'react'
-import { Borad, Panel } from "../../components";
+import { Borad, Panel, Head } from "../../components";
 
 import "./index.css";
 
@@ -12,6 +12,7 @@ export class Main extends React.Component {
 
     render() {
         return <React.Fragment >
+            <Head />
             <Panel />
             <Borad />
         </React.Fragment>;

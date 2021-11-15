@@ -119,8 +119,12 @@ export default (state: IBoardState = defaultState, action: Action): IBoardState 
         return { ...state };
     }
     else if (action.type === constant.UPDATE_PLAY_MODE) {
-        Object.defineProperty(state, "mode", { value: value });
-        return { ...state };
+        return {
+            myBoardInfo: generateRandomBoat(),
+            opponentBoardInfo: generateRandomBoat(),
+            winner: BoardType.NULL,
+            mode: value,
+        };
     }
     else if (action.type === constant.INITIAL_BOARD_STATE) {
         return {
