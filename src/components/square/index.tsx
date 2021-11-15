@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BoardType, Position, SquareState } from "../../model";
 import { Action, IBoardState, BoardActionCreator, IAppState } from '../../reduxs';
+import explosion from "../../resource/explosion-svgrepo-com.svg";
+import emptyHit from "../../resource/water-svgrepo-com.svg"
 import "./index.css";
 
 interface ISquareStateFromProps {
@@ -58,7 +60,10 @@ export class Square extends React.Component<ISquareProps, ISquareState> {
         if(winner !== BoardType.NULL){
             stateClass += " square-disable";
         }
-        return <div className={"square " + stateClass} onClick={winner === BoardType.NULL ? this.onSquareClick : () => { }}></div>
+        return <div className={"square " + stateClass} onClick={winner === BoardType.NULL ? this.onSquareClick : () => { }}>
+            {state === SquareState.HasShipDamaged && <img src={explosion} />}
+            {state === SquareState.Damaged && <img src={emptyHit} />}
+        </div>
     }
 
     private onSquareClick: () => void = () => {

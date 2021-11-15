@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button as BootStrapButton } from 'react-bootstrap';
 
 import "./index.css";
 
@@ -12,8 +13,7 @@ export class Button extends React.Component<IButtonProps, any>{
 
     render() {
         const { onClick, text } = this.props;
-        return <div className="button" onClick={onClick}>
-            {text}
-        </div>
+        return <BootStrapButton variant="outline-primary" className="button" onClick={onClick} color={"red"} size="lg">{text}</BootStrapButton>
+
     }
 }
