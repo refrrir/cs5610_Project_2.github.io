@@ -94,7 +94,14 @@ function getRandomNoDamagedPosition(board: SquareState[][]) {
     return { x: randomX, y: randomY };
 }
 
-export default (state: IBoardState = defaultState, action: Action): IBoardState => {
+export default (state: IBoardState, action: Action): IBoardState => {
+    if (state == null){
+        if (localStorage.getItem("boardState") !== null){
+            state = JSON.parse(localStorage.getItem("boardState")!);
+        }else{
+            state = defaultState;
+        }
+    }
     const { key, value } = action;
     if (action.type === constant.UPDATE_BOARD_STATE) {
         if (key === "opponentBoardInfo") {
@@ -103,6 +110,7 @@ export default (state: IBoardState = defaultState, action: Action): IBoardState 
             Object.defineProperty(state, "opponentBoardInfo", { value: board });
             if (checkIfWin(board)) {
                 Object.defineProperty(state, "winner", { value: BoardType.MINE });
+                localStorage.removeItem("boardState");
                 return { ...state };
             }
             if (state.mode === PlayMode.NORMAL) {
@@ -111,27 +119,33 @@ export default (state: IBoardState = defaultState, action: Action): IBoardState 
                 Object.defineProperty(state, "myBoardInfo", { value: board });
                 if (checkIfWin(board)) {
                     Object.defineProperty(state, "winner", { value: BoardType.OPPONENT });
+                    localStorage.removeItem("boardState");
                     return { ...state };
                 }
             }
         }
+        localStorage.setItem("boardState", JSON.stringify({ ...state }));
         return { ...state };
     }
     else if (action.type === constant.UPDATE_PLAY_MODE) {
-        return {
+        const newState = {
             myBoardInfo: generateRandomBoat(),
             opponentBoardInfo: generateRandomBoat(),
             winner: BoardType.NULL,
             mode: value,
         };
+        localStorage.setItem("boardState", JSON.stringify(newState));
+        return newState;
     }
     else if (action.type === constant.INITIAL_BOARD_STATE) {
-        return {
+        const newState = {
             myBoardInfo: generateRandomBoat(),
             opponentBoardInfo: generateRandomBoat(),
             winner: BoardType.NULL,
             mode: state.mode,
-        };
+        }
+        localStorage.setItem("boardState", JSON.stringify(newState));
+        return newState;
     }
     else {
         return { ...state };
